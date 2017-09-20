@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="css/login.css" />
+
+<div class="jumbotron text-center" style="background-image: url('images/connect.jpg');">
+	  <div class="wrapper">
+    <form class="form-signin" name="loginForm" ng-app="meetUpManagement" ng-controller="loginController">
+    	{{message}}       
+      	<h3 style="font-size: 40px">Please login</h3><br>
+      	<p>
+      		<div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"> email</i></span>
+        		<input class="form-control" name="emailLogin" type="email" placeholder="mysupermail@abc.com" ng-model="emailID" 
+                   		ng-pattern="/@*[a-z].com$/i" required/>
+           </div>
+            	<span class="alert alert-danger" ng-show="loginForm.emailLogin.$touched && loginForm.emailLogin.$invalid">Email required!</span>
+		</p>
+		<p>
+      		<div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"> Pswd</i></span>
+        		<input class="form-control" name="passwordLogin" type="password"  ng-model="password" required />
+             </div>
+             	<span class="alert alert-danger" ng-show="loginForm.passwordLogin.$touched && loginForm.passwordLogin.$invalid">Password required!</span>
+      	</p>      
+      <button class="btn btn-lg btn-primary btn-block" ng-click="login()" ng-disabled="loginForm.$invalid">Login</button>   
+    </form>
+  </div>
+</div>

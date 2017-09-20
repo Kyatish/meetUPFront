@@ -1,0 +1,219 @@
+<div >
+    <hr>
+    <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Add New MeetUp</button>
+	    <h2>Upcoming Meetups</h2>
+	    <span class="clearfix"></span>
+	</hr>
+	   <table class="table table-striped">
+	    <thead>
+	      <tr>
+	      	<th>MeetUp id</th>
+	        <th>Title</th>
+	        <th>Description</th>
+	        <th>Presenter</th>
+	        <th>Guest</th>
+	        <th>Location</th>
+	        <th>Date</th>
+	        <th>Start Time</th>
+	        <th>End Time</th>
+	        <th>Action</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="meetUp in meetUps">
+	     	<td>{{meetUp.meetUpID}}</td>
+	        <td>{{meetUp.title}}</td>
+	        <td>{{meetUp.description}}</td>
+	        <td>{{meetUp.presenter}}</td>
+	        <td>{{meetUp.guest}}</td>
+	        <td>{{meetUp.location}}</td>
+	        <td>{{meetUp.date}}</td>
+	        <td>{{meetUp.startTime}}</td>
+	        <td>{{meetUp.endTime}}</td>
+	        
+
+	        <td><button type="button" class="btn btn-primary btn-sm "  data-toggle="modal" data-target="#editMeetup" ng-click="editMeetUp(meetUp)">Edit</button></td>
+         	<td><button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteMeetUp" ng-click="editMeetUp(meetUp)">Delete</button></td>
+       	   </tr>
+       </tbody>
+  </table>
+  <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Meetup</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="title">Title:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="title" placeholder="Enter Title" ng-model="title">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description:</label>
+    <div class="col-sm-10"> 
+      <textarea class="form-control" id="description" placeholder="Enter Description" ng-model="description"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="presenter">Presenter:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="presenter" placeholder="Enter presenter" ng-model="presenter">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="guest">Guest:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="guest" placeholder="Enter guest" ng-model="guest">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="location">Location:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="location" placeholder="Enter location" ng-model="location">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="date">Date:</label>
+    <div class="col-sm-10"> 
+      <input type="date" class="form-control" id="date" placeholder="Enter date" ng-model="date">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="startTime">Start Time:</label>
+    <div class="col-sm-10"> 
+      <input type="time" class="form-control" id="startTime" placeholder="Enter start Time" ng-model="startTime">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="endTime">End Time:</label>
+    <div class="col-sm-10"> 
+      <input type="time" class="form-control" id="guest" placeholder="Enter end Time" ng-model="endTime">
+    </div>
+  </div>
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="addMeetup()" data-dismiss="modal">Post</button>
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!-- Modal -->
+ <div class="container">
+ <div class="modal fade" id="editMeetup" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Meetups for Meetup ID: {{MeetUpDataToEdit.meetUpID}}</h4>
+        </div>
+        <div class="modal-body">
+      <form class="form-horizontal">
+         <!-- <div class="form-group">
+    		<label class="control-label col-sm-2" for="meetUpId">MeetUpId</label>
+    	<div class="col-sm-10"> 
+      		<input type="text" class="form-control" id="meetUpId" ng-model="MeetUpDataToEdit.meetUpId">
+    	</div>
+  	  </div> -->
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="title">Title:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="title" ng-model="MeetUpDataToEdit.title">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="description" ng-model="MeetUpDataToEdit.description">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="presenter">Presenter:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="presenter" ng-model="MeetUpDataToEdit.presenter">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="guest">Guest:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="guest" ng-model="MeetUpDataToEdit.guest">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="location">Location:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="location" ng-model="MeetUpDataToEdit.location">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="date">Date:</label>
+    <div class="col-sm-10"> 
+      <input type="date" class="form-control" id="date" ng-model="MeetUpDataToEdit.date">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="startTime">Start Time:</label>
+    <div class="col-sm-10"> 
+      <input type="time" class="form-control" id="startTime" ng-model="MeetUpDataToEdit.startTime">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="endTime">End Time:</label>
+    <div class="col-sm-10"> 
+      <input type="time" class="form-control" id="guest" ng-model="MeetUpDataToEdit.endTime">
+    </div>
+  </div>
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="saveEdit()" data-dismiss="modal">Save Edit</button>
+    </div>
+  </div>
+</form>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+  </div>
+</div>
+</div>
+ <!-- Modal -->
+  <div class="modal fade" id="deleteMeetUp" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Blog</h4>
+        </div>
+        <div class="modal-body">
+         <strong >You are about to delete {{MeetUpDataToEdit.meetUpID}} , Are you sure?</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteMeetUp(MeetUpDataToEdit.meetUpID)">Yes</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+    

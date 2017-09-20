@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="css/login.css" />
+
+<div class="jumbotron text-center " style="background-image: url('images/connect.jpg');">
+  <!-- <div class="container"> -->
+  <div  class="container" ng-app="meetUpManagement" ng-controller="registerController">
+    <form class="form-signin" name="signupForm">       
+      <h3 style="font-size: 40px">Register Here</h3><br>
+      {{message}}
+      <p> 
+        	<div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+        		<input class="form-control" name="namesignup" required="required" type="text" placeholder="User Name" ng-model="userName"/>        	
+        	</div>
+      </p>
+      <p>         	
+            <div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"> email</i></span>
+        		<input class="form-control" name="emailsignup" data-icon="e" type="email" placeholder="mysupermail@abc.com" ng-model="emailID" 
+                   		ng-pattern="/@*[a-z].com$/i" required/>
+           </div>
+            	<span class="alert alert-danger" ng-show="signupForm.emailsignup.$touched && signupForm.emailsignup.$error.required">Email required!</span>
+				<span class="alert alert-danger" ng-show="signupForm.$dirty && signupForm.emailsignup.$invalid">Please enter a valid emailId</span> 
+			
+      </p>
+      <p>             
+            <div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-lock"> Pswd</i></span>
+        		<input class="form-control" name="passwordsignup" type="password" placeholder="Password(e.g. X8df!90EO)" ng-model="password" 
+                   	ng-pattern="/^(?=.*[A-a-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i" required />
+             </div>
+             	<span class="alert alert-danger" ng-show="signupForm.passwordsignup.$touched && signupForm.passwordsignup.$invalid">Password required!</span>
+             	<span class="alert alert-danger" ng-show="signupForm.passwordsignup.$dirty && signupForm.passwordsignup.$error.pattern" >
+             			Password must be within 8-20 len and be a combination of small and capital characters,numbers and special characters!!
+             	</span>
+             
+      </p>
+      <p>
+     		<div class="input-group">	
+        		<span class="input-group-addon">Company</span>
+        		<input type="text" class="form-control" name="company" placeholder="Company Name"  required="required" ng-model="company"/>
+        	</div>
+      </p>
+      <p>		
+      		<div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-car">Company Addr</i></span>
+        		<input type="text" class="form-control" name="companyAddress" placeholder="Company Address"  required="required" ng-model="companyAddress"/>
+        	</div>
+      </p>
+      <p>
+      		<div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+        		<input type="text" class="form-control" name="mobileNumber" placeholder="mobileNumber"  required="" ng-model="mobileNumber"/>
+        	</div> 
+      </p>
+      <p>
+      		<div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        		<input type="text" class="form-control" name="experience" placeholder="Years of Experience"  required="" ng-model="experience"/> 
+        	</div>
+      </p>
+      <p>
+      		<div class="input-group">
+        		<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+        		<input type="text" class="form-control" name="capability" placeholder="Technical Capabilities"  required="" ng-model="technicalCapabilities"/> 
+        	</div>
+      </p>
+           	<button class="btn btn-lg btn-primary btn-block" ng-disabled="signupForm.$invalid" ng-click="register()">Register</button>   
+    </form>
+  </div>
+ <!-- </div> -->
+</div>

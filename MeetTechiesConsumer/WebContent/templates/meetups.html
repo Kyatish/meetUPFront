@@ -1,0 +1,172 @@
+<div>
+    <hr>
+    <!-- <button type="button" class="btn btn-info btn-lg pull-right" data-toggle="modal" data-target="#myModal">Add New MeetUp</button>
+	 -->    <h2>Upcoming Meetups</h2>
+	    <div ng-if = "responseData.statusCode==202" class="alert alert-success">
+	    	<h3>{{responseData.message}}</h3>
+	    </div>
+	    <div ng-if = "responseData.statusCode==208" class="alert alert-danger">
+	    	<h3>{{responseData.message}}</h3>
+	    </div>
+	    <span class="clearfix"></span>
+	   </hr>
+	    <hr>
+	    </hr>
+	  <table class="table table-striped">
+	    <thead>
+	      <tr>
+	      	<th>MeetUp id</th>
+	        <th>Title</th>
+	        <th>Description</th>
+	        <th>Presenter</th>
+	        <th>Guest</th>
+	        <th>Location</th>
+	        <th>Date</th>
+	        <th>Start Time</th>
+	        <th>End Time</th>
+	        <th>Action</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	      <tr ng-repeat="meetUp in meetUps">
+	     	<td>{{meetUp.meetUpID}}</td>
+	        <td>{{meetUp.title}}</td>
+	        <td>{{meetUp.description}}</td>
+	        <td>{{meetUp.presenter}}</td>
+	        <td>{{meetUp.guest}}</td>
+	        <td>{{meetUp.location}}</td>
+	        <td>{{meetUp.date}}</td>
+	        <td>{{meetUp.startTime}}</td>
+	        <td>{{meetUp.endTime}}</td>
+	        <td>
+	        	<div class="btn-group btn-group">
+  					<button type="button" class="btn btn-primary" ng-disabled="meetUp.alreadyRegistered" ng-click="registerMeetup(meetUp)">
+  						<div ng-if="meetUp.alreadyRegistered" style="color:green">Accepted</div>
+  						<div ng-else>Accept</div>
+  					</button>
+					<!-- <a href="#" class="btn btn-primary">Reject</a> -->
+				</div>
+			</td>
+</div>
+	        <!-- <td><button type="button" class="btn btn-primary btn-sm "  data-toggle="modal" data-target="#editblog" ng-click="editBlog(blog)">Edit</button></td>
+         <td><button type="button" class="btn btn-danger btn-sm " data-toggle="modal" data-target="#deleteblog" ng-click="editBlog(blog)">Delete</button></td>
+       --></tr>
+       </tbody>
+  </table>
+  <!-- Modal -->
+ <!--  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add New Blog</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal">
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="blogTitle">Title:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="blogTitle" placeholder="Enter Title" ng-model="blogTitle">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="blogDescription">Description:</label>
+    <div class="col-sm-10"> 
+      <textarea class="form-control" id="blogDescription" placeholder="Enter Description" ng-model="blogDescription"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="category">Category:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="category" placeholder="Enter category" ng-model="category">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="addBlog()" data-dismiss="modal">Post</button>
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  --> <!-- Modal -->
+  <!-- <div class="modal fade" id="editblog" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Edit Blog</h4>
+        </div>
+        <div class="modal-body">
+         <form class="form-horizontal">
+         <div class="form-group">
+    <label class="control-label col-sm-2" for="blog_id">Blog_Id</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="blog_id" ng-model="blogDataToEdit.blog_id">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="title">Title:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="title" ng-model="blogDataToEdit.blogTitle">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="description">Description:</label>
+    <div class="col-sm-10"> 
+      <textarea class="form-control" id="description" ng-model="blogDataToEdit.blogDescription"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="category">Category:</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="category" ng-model="blogDataToEdit.category">
+    </div>
+  </div>
+  
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg" ng-click="saveEdit()" data-dismiss="modal">Save Edit</button>
+    </div>
+  </div>
+</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+   --><!-- Modal -->
+  <!-- <div class="modal fade" id="deleteblog" role="dialog">
+    <div class="modal-dialog">
+    
+      Modal content
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Blog</h4>
+        </div>
+        <div class="modal-body">
+         <strong >You are about to delete {{blogDataToEdit.blog_id}} the blog Are you sure?</strong>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="deleteBlog(blogDataToEdit)">Yes</button>
+           <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+        </div>
+      </div>
+      
+    </div> -->
+  </div>
+    
